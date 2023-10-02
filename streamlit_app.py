@@ -31,8 +31,7 @@ def get_fruityvise_data(this_fruit_choice):
     fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + this_fruit_choice)
     fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
     return fruityvice_normalized
-
-
+    
 #new section to display 
 streamlit.header("Fruityvice Fruit Advice!")
 try:
@@ -40,8 +39,8 @@ try:
   if not fruit_choice:
       streamlit.error("PLease select a fruit to gte information.")
   else:
-    back_from_function = get_fruityvice_data(fruit_choice)
-    streamlit.dataframe(back_from_function)
+        back_from_function = get_fruityvice_data(fruit_choice)
+        streamlit.dataframe(back_from_function)
     
 except URLError as e:
   streamlit.error()
@@ -69,3 +68,4 @@ add_my_fruit = streamlit.text_input('What fruit would you like to add?','Jackfru
 streamlit.write('Thanks for adding ', add_my_fruit)
 
 my_cur.execute("insert into fruit_load_list values ('from streamlit')")
+
